@@ -31,12 +31,13 @@ public class MainMenuActions {
 
 
         if (ProductToAdd == 0) {
-            Actions.mainMenu();
+           // Actions.mainMenu();
         } else {
             Statement getStock = connection.createStatement();
             ResultSet stock = getStock.executeQuery("SELECT Amount FROM Products WHERE ID =" + ProductToAdd);
             System.out.println("How many would you like?");
-            int amountToAdd = Utils.reader(0,stock.getInt("Amount"));
+            int quantityOnStock = stock.getInt("Amount");
+            int amountToAdd = Utils.reader(0, quantityOnStock);
 
             //Add product to customers cart
             Statement AddToCart = connection.createStatement();
@@ -139,7 +140,7 @@ public class MainMenuActions {
 
 
     static void Exit() {
-        System.out.println("Bye!");
+
         System.exit(0);
     }
 }

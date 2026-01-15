@@ -1,11 +1,23 @@
 package org.example;
 
-abstract class Page {
-    protected abstract void display();
-    protected abstract Object decision();
+import java.sql.Connection;
+import java.sql.SQLException;
 
-    public Object run(){
+public abstract class Page {
+    protected Connection connection;
+
+    public Page init(Connection connection) {
+        this.connection = connection;
+        return this;
+    }
+
+    protected abstract void display() throws SQLException;
+    protected abstract Page nextPage();
+    protected abstract void act() throws SQLException;
+
+    public Page run() throws SQLException {
         display();
-        return decision();
+        act();
+        return nextPage();
     }
 }

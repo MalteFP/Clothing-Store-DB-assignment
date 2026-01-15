@@ -10,13 +10,29 @@ public class PageLogin extends Page{
     }
 
     @Override
-    protected Object decision() {
+    protected Page nextPage() {
+        UserType usertype = decision();
+
+        if (usertype != null) {
+            switch (usertype) {
+                case Customer:
+                    return new PageLoginCustomerSelection().init(connection);
+
+            }
+        }
+        return null;
+    }
+
+    @Override
+    protected void act() {
+    }
+
+    private UserType decision() {
         switch (Utils.reader(1,2)) {
             case 1: return UserType.Customer;
             case 2: return UserType.Employee;
         }
         return null;
     }
-
 
 }
