@@ -10,21 +10,17 @@ public class Actions {
     
     //Lets the user choose between logging in as a customer and an employee
     static void startUp() throws SQLException {
-        System.out.println("Do you want to login as");
-        System.out.println("1 Customer");
-        System.out.println("2 Employee");
-        loginTypes(Utils.reader(1,2));
-    }
 
-    //Logs the User in as either a customer or an employee
-    static void loginTypes(int loginType) throws SQLException {
-        if (loginType == 1) {
-            Actions.loginCustomer();
-        } else if (loginType == 2) {
-            //Employee login
+        Page p = new PageLogin();
+        UserType usertype = (UserType) p.run();
+
+        switch (usertype) {
+            case Customer:
+                Actions.loginCustomer();
+                break;
         }
     }
-    
+
     //Runs mainmenuactions based on userchoice
     static void MainMenuActionTypes(int MainMenuActionType) throws SQLException {
         switch (MainMenuActionType) {
