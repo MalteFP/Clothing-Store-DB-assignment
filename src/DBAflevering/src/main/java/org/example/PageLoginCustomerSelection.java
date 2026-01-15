@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class PageLoginCustomerSelection extends Page {
+    
     private int users = 0;
 
     @Override

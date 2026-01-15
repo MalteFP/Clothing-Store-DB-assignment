@@ -1,15 +1,21 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import java.sql.*;
 
 public class PageMainMenuCustomer extends Page {
     @Override
     protected void display() throws SQLException {
-        Statement getName = connection.createStatement();
-        String name = getName.executeQuery("SELECT FullName FROM Customers WHERE ID = " + Main.currentCustomerID).getString("FullName");
+        PreparedStatement getName = connection.prepareStatement("SELECT FullName FROM Customers WHERE ID = ?");
+        getName.setInt(1, Main.currentCustomerID);
+        ResultSet rs = getName.executeQuery();
+
+        String name = "";
+
+        if (rs.next()) {
+            name = rs.getString("FullName");
+        }
+
         System.out.println("Welcome to the TMM, " + name);
 
         System.out.println("1. Browse products");
