@@ -17,6 +17,7 @@ public class Main {
             page = page.run();
         }
 
+
         System.out.println("Bye!");
         db.closeLocalConnection();
 

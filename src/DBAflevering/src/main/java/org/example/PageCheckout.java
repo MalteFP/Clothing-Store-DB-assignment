@@ -26,7 +26,7 @@ public class PageCheckout extends Page{
 
     @Override
     protected Page nextPage() {
-        return null;
+        return new PageMainMenuCustomer().init(connection);
     }
 
     @Override
@@ -34,17 +34,25 @@ public class PageCheckout extends Page{
         wantToCheckOut = decision();
         switch(wantToCheckOut) {
             case 1: {
-                //Empty customer cart
-                Statement emptyCart = connection.createStatement();
-                emptyCart.executeUpdate("DELETE FROM Carts WHERE CustomerID =" + Main.currentCustomerID);
+                Statement getBalance = connection.createStatement();
+                ResultSet balance = getBalance.executeQuery("SELECT Balance FROM Customers WHERE ID =" + Main.currentCustomerID);
 
-                //Take Money
-                Statement takeMoney = connection.createStatement();
-                takeMoney.executeUpdate("UPDATE Customers SET Balance = Balance - " + total + " WHERE ID =" + Main.currentCustomerID);
+                if (total <= balance.getInt("Balance")) {
+                    //Empty customer cart
+                    Statement emptyCart = connection.createStatement();
+                    emptyCart.executeUpdate("DELETE FROM Carts WHERE CustomerID =" + Main.currentCustomerID);
+
+                    //Take Money
+                    Statement takeMoney = connection.createStatement();
+                    takeMoney.executeUpdate("UPDATE Customers SET Balance = Balance - " + total + " WHERE ID =" + Main.currentCustomerID);
+                } else {
+                    System.out.println("You don't have enough balance to checkout");
+                }
+
             }
         }
     }
     private int decision() {
-        return Utils.reader(0,1);
+        return Utils.reader(1,2);
     }
 }

@@ -47,6 +47,6 @@ public class PageQtyToBuy extends Page {
 
 
     private int decision() {
-        return Utils.reader(0,quantityOnStock);
+        return Utils.reader(1,quantityOnStock);
     }
 }

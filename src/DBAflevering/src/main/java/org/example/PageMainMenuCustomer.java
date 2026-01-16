@@ -20,7 +20,8 @@ public class PageMainMenuCustomer extends Page {
 
         System.out.println("1. Browse products");
         System.out.println("2. View cart");
-        System.out.println("3. Exit");
+        System.out.println("3. Profile");
+        System.out.println("4. Exit");
     }
 
     @Override
@@ -28,6 +29,7 @@ public class PageMainMenuCustomer extends Page {
         switch (decision()) {
             case 1: return new PageBrowseProducts().init(connection);
             case 2: return  new PageViewCart().init(connection);
+            case 3: return  new PageProfile().init(connection);
         }
         return null;
     }
