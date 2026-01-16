@@ -11,7 +11,6 @@ public class PageLoginCustomerSelection extends Page {
 
     @Override
     protected void display() throws SQLException {
-
         Statement allFromCustomers = connection.createStatement();
         ResultSet User = allFromCustomers.executeQuery("SELECT * FROM Customers");
 

@@ -17,12 +17,6 @@ public class Main {
             page = page.run();
         }
 
-        /*
-        Actions.startUp();
-        Actions.mainMenu();
-*/
-
-
         System.out.println("Bye!");
         db.closeLocalConnection();
 
