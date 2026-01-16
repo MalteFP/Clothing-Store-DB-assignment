@@ -39,7 +39,7 @@ public class PageQtyToBuy extends Page {
 
         //Remove product from stock
         Statement RemoveFromStock  = connection.createStatement();
-        RemoveFromStock.executeUpdate("UPDATE Products SET Amount = Amount - " + quantityToAdd + " WHERE ID =" + productToBuy);
+        RemoveFromStock.executeUpdate("UPDATE Products SET Amount = Amount + " + quantityToAdd + " WHERE ID =" + productToBuy);
 
         System.out.println("Product has been added from your cart");
 

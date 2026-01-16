@@ -17,7 +17,8 @@ public class PageLogin extends Page{
             switch (usertype) {
                 case Customer:
                     return new PageLoginCustomerSelection().init(connection);
-
+                case Employee:
+                    return new PageMainMenuEmployee().init(connection);
             }
         }
         return null;
