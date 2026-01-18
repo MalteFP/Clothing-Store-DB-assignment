@@ -41,6 +41,6 @@ public class PageMainMenuCustomer extends Page {
 
 
     private int decision() {
-        return Utils.reader(1,3);
+        return Utils.reader(1,4);
     }
 }

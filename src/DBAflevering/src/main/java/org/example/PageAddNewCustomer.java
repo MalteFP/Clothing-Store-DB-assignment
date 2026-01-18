@@ -33,7 +33,7 @@ public class PageAddNewCustomer extends Page{
         if(correctFormat){
             Statement addItem = connection.createStatement();
             addItem.executeUpdate(
-                    "INSERT INTO Customers (FullName, Adress, ZipCode, City, Balance) VALUES ('" + columns[0] + "', '" + columns[1] + "', '" + columns[2] + "', " + columns[3] + " , " + columns[4] + ")"
+                    "INSERT INTO Customers (FullName, Adress, ZipCode, City, Balance) VALUES ('" + columns[0] + "', '" + columns[1] + "', '" + columns[2] + "', '" + columns[3] + "', " + columns[4] + ")"
             );
 
         }
