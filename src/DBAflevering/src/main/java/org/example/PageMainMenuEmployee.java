@@ -34,6 +34,6 @@ public class PageMainMenuEmployee extends Page {
     }
 
     private int decision() {
-        return Utils.reader(1,4);
+        return Utils.reader(1,5);
     }
 }
