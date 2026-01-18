@@ -11,7 +11,7 @@ public class PageProfile extends Page {
         ResultSet profile = getProfile.executeQuery("SELECT * FROM Customers");
 
         System.out.println("Name: " + profile.getString("FullName"));
-        System.out.println("Adress: " + profile.getString("Adress"));
+        System.out.println("Address: " + profile.getString("Address"));
         System.out.println("Zip: " + profile.getString("ZipCode"));
         System.out.println("City: " + profile.getString("City"));
         System.out.println("Balance: " + profile.getString("Balance"));

@@ -9,7 +9,7 @@ public class PageAddNewCustomer extends Page{
     protected void display() throws SQLException {
         //Formatting for split
         System.out.println("Please enter the relevant customer information in the following format: ");
-        System.out.println("FullName, Adress, ZipCode, City, Balance");
+        System.out.println("FullName, Address, ZipCode, City, Balance");
     }
 
     @Override
@@ -33,7 +33,7 @@ public class PageAddNewCustomer extends Page{
         if(correctFormat){
             Statement addItem = connection.createStatement();
             addItem.executeUpdate(
-                    "INSERT INTO Customers (FullName, Adress, ZipCode, City, Balance) VALUES ('" + columns[0] + "', '" + columns[1] + "', '" + columns[2] + "', '" + columns[3] + "', " + columns[4] + ")"
+                    "INSERT INTO Customers (FullName, Address, ZipCode, City, Balance) VALUES ('" + columns[0] + "', '" + columns[1] + "', '" + columns[2] + "', '" + columns[3] + "', " + columns[4] + ")"
             );
 
         }
