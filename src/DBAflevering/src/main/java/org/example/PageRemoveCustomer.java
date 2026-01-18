@@ -1,13 +1,11 @@
 package org.example;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PageLoginCustomerSelection extends Page {
-    
-    private int users = 0;
+public class PageRemoveCustomer extends Page{
+    int users = 0;
 
     @Override
     protected void display() throws SQLException {
@@ -26,16 +24,17 @@ public class PageLoginCustomerSelection extends Page {
 
     @Override
     protected Page nextPage() {
-        return new PageMainMenuCustomer().init(connection);
+        return new PageMainMenuEmployee().init(connection);
     }
 
     @Override
-    protected void act() {
-        Main.currentCustomerID = decision();
+    protected void act() throws SQLException {
+        Statement removeCustomer = connection.createStatement();
+        removeCustomer.executeUpdate("DELETE FROM Customers WHERE ID = " + decision());
     }
-
-
     private int decision() {
-        return Utils.reader(1,users);
+        return Utils.reader(0,users);
     }
+
+
 }

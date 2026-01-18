@@ -25,7 +25,7 @@ public class PageRemoveFromCart extends Page {
                 " WHERE Carts.CustomerID =" + Main.currentCustomerID
         );
 
-
+        System.out.println("0. Back");
         while (cart.next()) {
             amountOfItemsInCart++;
             cartIDs.add(cart.getInt("ID"));
