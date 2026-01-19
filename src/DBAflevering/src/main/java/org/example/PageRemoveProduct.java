@@ -3,9 +3,11 @@ package org.example;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class PageRemoveProduct extends Page{
     int products = 0;
+    ArrayList productIDs = new ArrayList();
 
     @Override
     protected void display() throws SQLException {
@@ -17,6 +19,7 @@ public class PageRemoveProduct extends Page{
         while (productSet.next()) {
             products++;
             int ID = productSet.getInt("ID");
+            productIDs.add(ID);
             String type = productSet.getString("Type");
             String name = productSet.getString("ItemName");
             int qty = productSet.getInt("Amount");
@@ -35,10 +38,10 @@ public class PageRemoveProduct extends Page{
     @Override
     protected void act() throws SQLException {
         Statement removeProduct = connection.createStatement();
-        removeProduct.executeUpdate("DELETE FROM Products WHERE ID = " + decision());
+        removeProduct.executeUpdate("DELETE FROM Products WHERE ID = " + productIDs.get(decision()));
     }
     private int decision() {
-        return Utils.reader(0,products);
+        return Utils.reader(0,products - 1);
     }
 
 
