@@ -25,7 +25,7 @@ public class PageRemoveProduct extends Page{
             int qty = productSet.getInt("Amount");
             int price = productSet.getInt("Price");
 
-            System.out.println(ID + ": " + type + ": " + name + ": " + qty + " in stock: " + price + ",-");
+            System.out.println(products + ": " + type + ": " + name + ": " + qty + " in stock: " + price + ",-");
         }
         System.out.println("Which would you lke to remove");
     }
@@ -37,8 +37,11 @@ public class PageRemoveProduct extends Page{
 
     @Override
     protected void act() throws SQLException {
-        Statement removeProduct = connection.createStatement();
-        removeProduct.executeUpdate("DELETE FROM Products WHERE ID = " + productIDs.get(decision()));
+        int decision = decision();
+        if(decision != 0){
+            Statement removeProduct = connection.createStatement();
+            removeProduct.executeUpdate("DELETE FROM Products WHERE ID = " + productIDs.get(decision - 1));
+        }
     }
     private int decision() {
         return Utils.reader(0,products - 1);

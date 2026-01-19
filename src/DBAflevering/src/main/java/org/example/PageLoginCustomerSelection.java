@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class PageLoginCustomerSelection extends Page {
-    
-    private int users = 0;
 
+    private int decision;
+    private int users = 0;
+    ArrayList customerIDs = new ArrayList();
     @Override
     protected void display() throws SQLException {
         Statement allFromCustomers = connection.createStatement();
@@ -18,24 +20,29 @@ public class PageLoginCustomerSelection extends Page {
         while (User.next()) {
             users++;
             int ID = User.getInt("ID");
+            customerIDs.add(ID);
             String Name = User.getString("FullName");
-            System.out.println(Name + ": " + ID);
+            System.out.println(Name + ": " + users);
         }
 
     }
 
     @Override
     protected Page nextPage() {
+        switch (decision)   {
+            case 0: return new PageLogin().init(connection);
+        }
         return new PageMainMenuCustomer().init(connection);
     }
 
     @Override
     protected void act() {
-        Main.currentCustomerID = decision();
+        decision = decision();
+        Main.currentCustomerID = decision;
     }
 
 
     private int decision() {
-        return Utils.reader(1,users);
+        return Utils.reader(0,users);
     }
 }

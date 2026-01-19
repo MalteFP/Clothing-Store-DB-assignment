@@ -31,7 +31,7 @@ public class PageAddStock extends Page {
     protected Page nextPage() {
          int decision = decision();
             if (decision == 0) {
-                return new PageMainMenuCustomer().init(connection);
+                return new org.example.PageMainMenuCustomer().init(connection);
             }
             return new PageAddStockQty(decision).init(connection);
     }
