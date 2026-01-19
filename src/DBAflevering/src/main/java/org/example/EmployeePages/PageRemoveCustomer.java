@@ -1,11 +1,14 @@
-package org.example;
+package org.example.EmployeePages;
+
+import org.example.Page;
+import org.example.Utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class PageRemoveCustomer extends Page{
+public class PageRemoveCustomer extends Page {
     int users = 0;
     ArrayList customerIDs = new ArrayList();
 

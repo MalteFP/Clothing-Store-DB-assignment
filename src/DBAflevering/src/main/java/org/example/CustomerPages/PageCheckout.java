@@ -1,10 +1,14 @@
-package org.example;
+package org.example.CustomerPages;
+
+import org.example.Main;
+import org.example.Page;
+import org.example.Utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PageCheckout extends Page{
+public class PageCheckout extends Page {
     int total;
     int wantToCheckOut;
     @Override

@@ -1,4 +1,6 @@
-package org.example;
+package org.example.EmployeePages;
+
+import org.example.*;
 
 import java.sql.SQLException;
 

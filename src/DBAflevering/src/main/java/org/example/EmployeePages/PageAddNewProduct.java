@@ -1,10 +1,12 @@
-package org.example;
+package org.example.EmployeePages;
+
+import org.example.Page;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class PageAddNewProduct extends Page{
+public class PageAddNewProduct extends Page {
     @Override
     protected void display() throws SQLException {
         //Formatting for split

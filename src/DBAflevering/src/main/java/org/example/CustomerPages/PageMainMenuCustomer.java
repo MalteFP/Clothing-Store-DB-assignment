@@ -1,6 +1,7 @@
-package org.example;
+package org.example.CustomerPages;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import org.example.*;
+
 import java.sql.*;
 
 public class PageMainMenuCustomer extends Page {

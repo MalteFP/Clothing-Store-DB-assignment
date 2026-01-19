@@ -1,6 +1,9 @@
 package org.example;
 
-public class PageLogin extends Page{
+import org.example.CustomerPages.PageLoginCustomerSelection;
+import org.example.EmployeePages.PageMainMenuEmployee;
+
+public class PageLogin extends Page {
 
     @Override
     protected void display() {

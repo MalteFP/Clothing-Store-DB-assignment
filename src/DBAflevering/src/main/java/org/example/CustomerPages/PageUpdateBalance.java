@@ -1,4 +1,7 @@
-package org.example;
+package org.example.CustomerPages;
+
+import org.example.Page;
+import org.example.Utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -3,7 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 public class Utils {
-    static int reader(int min, int max) {
+    public static int reader(int min, int max) {
         System.out.println("Please enter a number between " + min + " and " + max);
         while (true) {
             try {

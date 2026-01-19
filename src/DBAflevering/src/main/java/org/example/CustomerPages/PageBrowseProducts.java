@@ -1,14 +1,17 @@
-package org.example;
+package org.example.CustomerPages;
+
+import org.example.Page;
+import org.example.Utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PageAddStock extends Page {
+public class PageBrowseProducts extends Page {
     int products = 0;
-
     @Override
     protected void display() throws SQLException {
+
         Statement product = connection.createStatement();
         ResultSet productSet = product.executeQuery("SELECT * FROM Products");
 
@@ -24,23 +27,25 @@ public class PageAddStock extends Page {
 
             System.out.println(ID + ": " + type + ": " + name + ": " + qty + " in stock: " + price + ",-");
         }
-        System.out.println("What product would you like to add more of to shelf?");
+
+
+        System.out.println("What product would you like to buy? ");
     }
 
     @Override
     protected Page nextPage() {
-         int decision = decision();
-            if (decision == 0) {
-                return new org.example.PageMainMenuCustomer().init(connection);
-            }
-            return new PageAddStockQty(decision).init(connection);
+        int decision = decision();
+        if (decision == 0) {
+            return new PageMainMenuCustomer().init(connection);
+        }
+        return new PageQtyToBuy(decision).init(connection);
     }
-
 
     @Override
-    protected void act() throws SQLException {
+    protected void act() {
 
     }
+
     private int decision() {
         return Utils.reader(0,products);
     }

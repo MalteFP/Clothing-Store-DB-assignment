@@ -1,6 +1,8 @@
-package org.example;
+package org.example.CustomerPages;
 
-import java.sql.Connection;
+import org.example.*;
+import org.example.PageLogin;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

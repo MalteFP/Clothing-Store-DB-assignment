@@ -1,11 +1,14 @@
-package org.example;
+package org.example.EmployeePages;
+
+import org.example.Page;
+import org.example.Utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class PageRemoveProduct extends Page{
+public class PageRemoveProduct extends Page {
     int products = 0;
     ArrayList productIDs = new ArrayList();
 
