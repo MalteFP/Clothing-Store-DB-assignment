@@ -10,14 +10,11 @@ import java.sql.Statement;
 public class PageProfile extends Page {
     @Override
     protected void display() throws SQLException {
-        Statement getProfile = connection.createStatement();
-        ResultSet profile = getProfile.executeQuery("SELECT * FROM Customers");
-
-        System.out.println("Name: " + profile.getString("FullName"));
-        System.out.println("Address: " + profile.getString("Address"));
-        System.out.println("Zip: " + profile.getString("ZipCode"));
-        System.out.println("City: " + profile.getString("City"));
-        System.out.println("Balance: " + profile.getString("Balance"));
+        System.out.println("Name: " + Main.currentCustomer.fullName());
+        System.out.println("Address: " + Main.currentCustomer.address());
+        System.out.println("Zip: " + Main.currentCustomer.zipCode());
+        System.out.println("City: " + Main.currentCustomer.city());
+        System.out.println("Balance: " + Main.currentCustomer.balance());
 
         System.out.println("What would you like to do?");
         System.out.println("1. Sign out");
@@ -28,7 +25,7 @@ public class PageProfile extends Page {
     @Override
     protected Page nextPage() {
         switch (decision()) {
-            case 1: { Main.currentCustomerID = -1;
+            case 1: { Main.currentCustomer = null;
                 return new PageLogin().init(connection);
             }
             case 2: return new PageUpdateBalance().init(connection);

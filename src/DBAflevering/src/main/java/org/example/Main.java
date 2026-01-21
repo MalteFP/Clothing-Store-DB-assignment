@@ -2,13 +2,23 @@ package org.example;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Main {
-    public static int currentCustomerID = -1;
+    public static Customer currentCustomer = null;
+    public static ArrayList<Customer> customerList = null;
+    public static ArrayList<Product> productList = null;
 
     public static void main(String[] args) throws SQLException {
         DBConnect db = new DBConnect();
         Connection connection = db.getLocalConnection();
+
+
+        new LoadData().init(connection);
+        productList = LoadData.loadProducts();
+        customerList = LoadData.loadCustomers();
+
+
 
         Page page = new PageLogin();
         page.init(connection);

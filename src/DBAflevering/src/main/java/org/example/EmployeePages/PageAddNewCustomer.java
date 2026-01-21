@@ -1,5 +1,7 @@
 package org.example.EmployeePages;
 
+import org.example.LoadData;
+import org.example.Main;
 import org.example.Page;
 
 import java.sql.SQLException;
@@ -34,10 +36,8 @@ public class PageAddNewCustomer extends Page {
         //Adds customer to database
         if(correctFormat){
             Statement addItem = connection.createStatement();
-            addItem.executeUpdate(
-                    "INSERT INTO Customers (FullName, Address, ZipCode, City, Balance) VALUES ('" + columns[0] + "', '" + columns[1] + "', '" + columns[2] + "', '" + columns[3] + "', " + columns[4] + ")"
-            );
-
+            addItem.executeUpdate("INSERT INTO Customers (FullName, Address, ZipCode, City, Balance) VALUES ('" + columns[0] + "', '" + columns[1] + "', '" + columns[2] + "', '" + columns[3] + "', " + columns[4] + ")");
+            Main.customerList = LoadData.loadCustomers();
         }
     }
 

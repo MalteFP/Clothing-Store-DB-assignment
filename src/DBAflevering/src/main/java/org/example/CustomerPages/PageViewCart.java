@@ -13,27 +13,24 @@ public class PageViewCart extends Page {
     boolean cartIsEmpty;
     @Override
     protected void display() throws SQLException {
+
         Statement isCartEmpty = connection.createStatement();
-        ResultSet customerCartContent =  isCartEmpty.executeQuery("SELECT CustomerID FROM Carts" + " WHERE CustomerID = " + Main.currentCustomerID);
+        ResultSet customerCartContent =  isCartEmpty.executeQuery("SELECT CustomerID FROM Carts" + " WHERE CustomerID = " + Main.currentCustomer.ID());
         if (!customerCartContent.next()) {
             System.out.println("Your cart is empty");
             cartIsEmpty = true;
         } else {
             Statement getCart = connection.createStatement();
-            ResultSet cart = getCart.executeQuery("SELECT Carts.ID, Carts.Amount, Products.ItemName, Products.Price FROM Carts" +
-                    " INNER JOIN Products ON Carts.ProductID = Products.ID" +
-                    " WHERE Carts.CustomerID =" + Main.currentCustomerID
+            ResultSet cart = getCart.executeQuery("SELECT Carts.ID, Carts.Amount, Products.ItemName, Products.Price FROM Carts LEFT JOIN Products ON Carts.ProductID = Products.ID WHERE Carts.CustomerID =" + Main.currentCustomer.ID()
             );
-            int amountOfItemsInCart = 0;
             ArrayList<Integer> cartIDs = new ArrayList<Integer>();
             while (cart.next()) {
-                amountOfItemsInCart++;
                 cartIDs.add(cart.getInt("ID"));
                 String productName = cart.getString("ItemName");
                 int price = cart.getInt("Price");
                 int amount = cart.getInt("Amount");
 
-                System.out.println(cartIDs.size() - 1 + ": " + productName + ": " + amount + " Price For Each: " + price + ",-");
+                System.out.println(cartIDs.size() + ": " + productName + ": " + amount + " Price For Each: " + price + ",-");
             }
             System.out.println("Would you like to remove anything from your cart?");
             System.out.println("1: Yes");

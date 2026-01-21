@@ -1,5 +1,7 @@
 package org.example.EmployeePages;
 
+import org.example.LoadData;
+import org.example.Main;
 import org.example.Page;
 import org.example.Utils;
 
@@ -9,21 +11,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class PageRemoveCustomer extends Page {
-    int users = 0;
-    ArrayList customerIDs = new ArrayList();
 
     @Override
     protected void display() throws SQLException {
-        Statement allFromCustomers = connection.createStatement();
-        ResultSet User = allFromCustomers.executeQuery("SELECT * FROM Customers");
+
+
 
         System.out.println("0. Back");
-        while (User.next()) {
-            users++;
-            int ID = User.getInt("ID");
-            customerIDs.add(ID);
-            String Name = User.getString("FullName");
-            System.out.println(Name + ": " + users);
+        for (int i = 0; i < Main.customerList.size(); i++) {
+            System.out.println(i + 1 + ": " + Main.customerList.get(i).fullName());
         }
 
     }
@@ -38,11 +34,14 @@ public class PageRemoveCustomer extends Page {
         int decision = decision();
         if(decision!=0){
             Statement removeCustomer = connection.createStatement();
-            removeCustomer.executeUpdate("DELETE FROM Customers WHERE ID = " + customerIDs.get(decision - 1));
+            removeCustomer.executeUpdate("DELETE FROM Customers WHERE ID = " + Main.customerList.get(decision - 1).ID());
+
+            Main.customerList = LoadData.loadCustomers();
+
         }
     }
     private int decision() {
-        return Utils.reader(0,users);
+        return Utils.reader(0,Main.customerList.size());
     }
 
 

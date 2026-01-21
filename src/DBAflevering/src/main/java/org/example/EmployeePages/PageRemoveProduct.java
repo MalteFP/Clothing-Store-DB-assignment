@@ -1,9 +1,10 @@
 package org.example.EmployeePages;
 
+import org.example.LoadData;
+import org.example.Main;
 import org.example.Page;
 import org.example.Utils;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -14,21 +15,9 @@ public class PageRemoveProduct extends Page {
 
     @Override
     protected void display() throws SQLException {
-        Statement product = connection.createStatement();
-        ResultSet productSet = product.executeQuery("SELECT * FROM Products");
-
-
-        System.out.println("0. Back");
-        while (productSet.next()) {
-            products++;
-            int ID = productSet.getInt("ID");
-            productIDs.add(ID);
-            String type = productSet.getString("Type");
-            String name = productSet.getString("ItemName");
-            int qty = productSet.getInt("Amount");
-            int price = productSet.getInt("Price");
-
-            System.out.println(products + ": " + type + ": " + name + ": " + qty + " in stock: " + price + ",-");
+        System.out.println("0: Back");
+        for (int i = 0; i < Main.productList.size(); i++) {
+            System.out.println(i + 1 + ": " + Main.productList.get(i).type() + ": " + Main.productList.get(i).itemName() + ": " + Main.productList.get(i).amount() + " in stock: " + Main.productList.get(i).price() + ",-");
         }
         System.out.println("Which would you lke to remove");
     }
@@ -44,10 +33,16 @@ public class PageRemoveProduct extends Page {
         if(decision != 0){
             Statement removeProduct = connection.createStatement();
             removeProduct.executeUpdate("DELETE FROM Products WHERE ID = " + productIDs.get(decision - 1));
+
+            Statement removeProductFromCart = connection.createStatement();
+            removeProductFromCart.executeUpdate("DELETE FROM Carts WHERE ProductID = " + productIDs.get(decision - 1));
+
+            Main.productList = LoadData.loadProducts();
+
         }
     }
     private int decision() {
-        return Utils.reader(0,products - 1);
+        return Utils.reader(0,products);
     }
 
 
