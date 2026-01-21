@@ -1,5 +1,6 @@
 package org.example.EmployeePages;
 
+import org.example.CustomerPages.PageMainMenuCustomer;
 import org.example.LoadData;
 import org.example.Main;
 import org.example.Page;
@@ -18,7 +19,7 @@ public class PageAddNewCustomer extends Page {
 
     @Override
     protected Page nextPage() {
-        return new PageMainMenuEmployee().init(connection);
+        return new PageMainMenuCustomer().init(connection);
     }
 
     @Override
@@ -35,9 +36,10 @@ public class PageAddNewCustomer extends Page {
         }
         //Adds customer to database
         if(correctFormat){
-            Statement addItem = connection.createStatement();
-            addItem.executeUpdate("INSERT INTO Customers (FullName, Address, ZipCode, City, Balance) VALUES ('" + columns[0] + "', '" + columns[1] + "', '" + columns[2] + "', '" + columns[3] + "', " + columns[4] + ")");
+            Statement addCustomer = connection.createStatement();
+            addCustomer.executeUpdate("INSERT INTO Customers (FullName, Address, ZipCode, City, Balance) VALUES ('" + columns[0] + "', '" + columns[1] + "', '" + columns[2] + "', '" + columns[3] + "', " + columns[4] + ")");
             Main.customerList = LoadData.loadCustomers();
+            Main.currentCustomer = Main.customerList.getLast();
         }
     }
 
