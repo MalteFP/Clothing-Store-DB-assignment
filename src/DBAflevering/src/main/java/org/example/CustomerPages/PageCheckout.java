@@ -17,7 +17,7 @@ public class PageCheckout extends Page {
         Statement getTotal = connection.createStatement();
         ResultSet prices = getTotal.executeQuery("SELECT Carts.Amount, Products.Price FROM Carts" +
                 " INNER JOIN Products ON Carts.ProductID = Products.ID" +
-                " WHERE Carts.CustomerID =" + Main.currentCustomerID
+                " WHERE Carts.CustomerID =" + Main.currentCustomer.ID()
         );
         while(prices.next()) {
             total += prices.getInt("Amount") * prices.getInt("Price");
@@ -39,16 +39,19 @@ public class PageCheckout extends Page {
         switch(wantToCheckOut) {
             case 1: {
                 Statement getBalance = connection.createStatement();
-                ResultSet balance = getBalance.executeQuery("SELECT Balance FROM Customers WHERE ID =" + Main.currentCustomerID);
+                ResultSet balance = getBalance.executeQuery("SELECT Balance FROM Customers WHERE ID =" + Main.currentCustomer.ID());
 
                 if (total <= balance.getInt("Balance")) {
                     //Empty customer cart
                     Statement emptyCart = connection.createStatement();
-                    emptyCart.executeUpdate("DELETE FROM Carts WHERE CustomerID =" + Main.currentCustomerID);
+                    emptyCart.executeUpdate("DELETE FROM Carts WHERE CustomerID =" + Main.currentCustomer.ID());
 
                     //Take Money
                     Statement takeMoney = connection.createStatement();
-                    takeMoney.executeUpdate("UPDATE Customers SET Balance = Balance - " + total + " WHERE ID =" + Main.currentCustomerID);
+                    takeMoney.executeUpdate("UPDATE Customers SET Balance = Balance - " + total + " WHERE ID =" + Main.currentCustomer.ID());
+
+                    Main.currentCustomer.setBalance(Main.currentCustomer.balance() + total);
+
                 } else {
                     System.out.println("You don't have enough balance to checkout");
                 }

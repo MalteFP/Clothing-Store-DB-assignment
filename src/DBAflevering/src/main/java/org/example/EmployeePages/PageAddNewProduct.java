@@ -1,5 +1,7 @@
 package org.example.EmployeePages;
 
+import org.example.LoadData;
+import org.example.Main;
 import org.example.Page;
 
 import java.sql.SQLException;
@@ -34,10 +36,8 @@ public class PageAddNewProduct extends Page {
         //Adds item to stock
         if(correctFormat){
             Statement addItem = connection.createStatement();
-            addItem.executeUpdate(
-                    "INSERT INTO Products (Type, ItemName, Amount, Price) VALUES ('" + columns[0] + "', '" + columns[1] + "', " + columns[2] + ", " + columns[3] + ")"
-            );
-
+            addItem.executeUpdate("INSERT INTO Products (Type, ItemName, Amount, Price) VALUES ('" + columns[0] + "', '" + columns[1] + "', " + columns[2] + ", " + columns[3] + ")");
+            Main.productList = LoadData.loadProducts();
         }
     }
 

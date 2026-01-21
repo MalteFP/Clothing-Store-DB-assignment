@@ -1,33 +1,18 @@
 package org.example.CustomerPages;
 
+import org.example.Main;
 import org.example.Page;
 import org.example.Utils;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class PageBrowseProducts extends Page {
-    int products = 0;
     @Override
     protected void display() throws SQLException {
-
-        Statement product = connection.createStatement();
-        ResultSet productSet = product.executeQuery("SELECT * FROM Products");
-
-
-        System.out.println("0. Back");
-        while (productSet.next()) {
-            products++;
-            int ID = productSet.getInt("ID");
-            String type = productSet.getString("Type");
-            String name = productSet.getString("ItemName");
-            int qty = productSet.getInt("Amount");
-            int price = productSet.getInt("Price");
-
-            System.out.println(ID + ": " + type + ": " + name + ": " + qty + " in stock: " + price + ",-");
+        System.out.println("0: Back");
+        for (int i = 0; i < Main.productList.size(); i++) {
+            System.out.println(i + 1 + ": " + Main.productList.get(i).type() + ": " + Main.productList.get(i).itemName() + ": " + Main.productList.get(i).amount() + " in stock: " + Main.productList.get(i).price() + ",-");
         }
-
 
         System.out.println("What product would you like to buy? ");
     }
@@ -38,7 +23,7 @@ public class PageBrowseProducts extends Page {
         if (decision == 0) {
             return new PageMainMenuCustomer().init(connection);
         }
-        return new PageQtyToBuy(decision).init(connection);
+        return new PageQtyToBuy(decision - 1).init(connection);
     }
 
     @Override
@@ -47,6 +32,6 @@ public class PageBrowseProducts extends Page {
     }
 
     private int decision() {
-        return Utils.reader(0,products);
+        return Utils.reader(0,Main.productList.size());
     }
 }

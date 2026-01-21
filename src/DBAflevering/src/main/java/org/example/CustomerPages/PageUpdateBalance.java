@@ -1,5 +1,6 @@
 package org.example.CustomerPages;
 
+import org.example.Main;
 import org.example.Page;
 import org.example.Utils;
 
@@ -11,9 +12,8 @@ public class PageUpdateBalance extends Page {
 
     @Override
     protected void display() throws SQLException {
-        Statement getProfile = connection.createStatement();
-        ResultSet profile = getProfile.executeQuery("SELECT * FROM Customers");
-        System.out.println("Balance: " + profile.getString("Balance"));
+
+        System.out.println("Balance: " + Main.currentCustomer.balance());
         System.out.println("Do you want to add/withdraw from your balance?");
 
     }
@@ -25,8 +25,12 @@ public class PageUpdateBalance extends Page {
 
     @Override
     protected void act() throws SQLException {
+        int decision = decision();
+
         Statement addToBalance = connection.createStatement();
-        addToBalance.executeUpdate("UPDATE Customers SET Balance = Balance + " + decision());
+        addToBalance.executeUpdate("UPDATE Customers SET Balance = Balance + " + decision);
+
+        Main.currentCustomer.setBalance(Main.currentCustomer.balance() + decision);
     }
 
     private int decision() {
