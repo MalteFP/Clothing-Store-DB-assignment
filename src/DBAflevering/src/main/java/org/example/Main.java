@@ -8,6 +8,7 @@ public class Main {
     public static Customer currentCustomer = null;
     public static ArrayList<Customer> customerList = null;
     public static ArrayList<Product> productList = null;
+    public static ArrayList<Store> storeList = null;
 
     public static void main(String[] args) throws SQLException {
         DBConnect db = new DBConnect();
@@ -17,6 +18,7 @@ public class Main {
         new LoadData().init(connection);
         productList = LoadData.loadProducts();
         customerList = LoadData.loadCustomers();
+        storeList = LoadData.loadStores();
 
 
 

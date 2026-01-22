@@ -53,7 +53,7 @@ public class PageCheckout extends Page {
                     Main.currentCustomer.setBalance(Main.currentCustomer.balance() + total);
 
                 } else {
-                    System.out.println("You don't have enough balance to checkout");
+                    System.out.printf("%nYou don't have enough balance to checkout");
                 }
 
             }

@@ -1,5 +1,6 @@
 package org.example.CustomerPages;
 
+import org.example.LoadData;
 import org.example.Main;
 import org.example.Page;
 import org.example.Utils;
@@ -36,6 +37,7 @@ public class PageQtyToBuy extends Page {
         //Remove product from stock
         Statement RemoveFromStock  = connection.createStatement();
         RemoveFromStock.executeUpdate("UPDATE Products SET Amount = Amount - " + quantityToAdd + " WHERE ID =" + Main.productList.get(productToBuy).ID());
+        Main.productList = LoadData.loadProducts();
 
         System.out.println("Product has been added from your cart");
 

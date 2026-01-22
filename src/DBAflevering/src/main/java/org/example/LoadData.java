@@ -38,4 +38,16 @@ public class LoadData {
         }
         return customerList;
     }
+
+
+    public static ArrayList<Store> loadStores() throws SQLException {
+        ArrayList<Store> loadStores = new ArrayList<>();
+        Statement getStores = connection.createStatement();
+        ResultSet stores = getStores.executeQuery("SELECT * FROM Stores");
+
+        while (stores.next()) {
+            loadStores.add(new Store(stores.getInt("ID"),stores.getString("Address"),stores.getInt("ZipCode"), stores.getString("City")));
+        }
+        return loadStores;
+    }
 }

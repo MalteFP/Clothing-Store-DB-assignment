@@ -8,9 +8,9 @@ public class PageMainMenuCustomer extends Page {
     @Override
     protected void display() throws SQLException {
 
-        System.out.println("Welcome to the TMM, " + Main.currentCustomer.fullName());
+        System.out.println("Welcome to the TMM, " + Main.currentCustomer.fullName() + ".");
 
-        System.out.println("1. Browse products");
+        System.out.printf("%n1. Browse products%n");
         System.out.println("2. View cart");
         System.out.println("3. Profile");
         System.out.println("4. Exit");
