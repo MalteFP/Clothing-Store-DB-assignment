@@ -1,9 +1,6 @@
-package org.example.EmployeePages;
+package org.example;
 
 import org.example.CustomerPages.PageMainMenuCustomer;
-import org.example.LoadData;
-import org.example.Main;
-import org.example.Page;
 
 import java.sql.SQLException;
 import java.sql.Statement;

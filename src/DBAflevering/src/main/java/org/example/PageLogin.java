@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.CustomerPages.PageLoginCustomerSelection;
-import org.example.EmployeePages.PageAddNewCustomer;
 import org.example.EmployeePages.PageMainMenuEmployee;
 
 public class PageLogin extends Page {

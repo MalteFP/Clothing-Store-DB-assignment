@@ -33,8 +33,8 @@ public class PageLoginCustomerSelection extends Page {
     @Override
     protected void act() throws SQLException {
         decision = decision();
-        if (decision != 1) {
-            Main.currentCustomer = Main.customerList.get(decision() - 1);
+        if (decision != 0) {
+            Main.currentCustomer = Main.customerList.get(decision - 1);
         }
     }
 
