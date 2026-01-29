@@ -1,5 +1,7 @@
 package org.example.EmployeePages;
 
+import org.example.LoadData;
+import org.example.Main;
 import org.example.Page;
 import org.example.Utils;
 
@@ -30,6 +32,7 @@ public class PageAddStockQty extends Page {
     protected void act() throws SQLException {
         Statement addStock = connection.createStatement();
         addStock.executeUpdate("UPDATE products SET Amount = Amount + " + decision() + " WHERE ID = " + productToAddStock);
+        Main.productList = LoadData.loadProducts();
         System.out.println("Updated product to add stock");
     }
 

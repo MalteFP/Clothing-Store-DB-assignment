@@ -1,5 +1,6 @@
 package org.example.CustomerPages;
 
+import org.example.LoadData;
 import org.example.Main;
 import org.example.Page;
 import org.example.Utils;
@@ -25,7 +26,7 @@ public class PageRemoveFromCart extends Page {
         ResultSet cart = getCart.executeQuery("SELECT Carts.ID, Carts.Amount, Products.ItemName, Products.Price FROM Carts LEFT JOIN Products ON Carts.ProductID = Products.ID WHERE Carts.CustomerID =" +Main.currentCustomer.ID()
         );
 
-        System.out.println("0. Back");
+        System.out.printf("%n0. Back%n");
         while (cart.next()) {
             amountOfItemsInCart++;
             cartIDs.add(cart.getInt("ID"));
@@ -63,6 +64,9 @@ public class PageRemoveFromCart extends Page {
             Statement RemoveFromCart  = connection.createStatement();
             RemoveFromCart.executeUpdate("DELETE FROM Carts WHERE ID =" + ID);
             System.out.println("Product has been removed from your cart");
+
+            Main.productList = LoadData.loadProducts();
+
         }
     }
     private int decision(){

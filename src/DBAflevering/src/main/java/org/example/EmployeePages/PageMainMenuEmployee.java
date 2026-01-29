@@ -14,7 +14,7 @@ public class PageMainMenuEmployee extends Page {
         System.out.println("3. Add to stock of existing item");
         System.out.println("4. Remove a customer");
         System.out.println("5. Log Out");
-        System.out.println("What would you like to do?");
+        System.out.printf("%nWhat would you like to do?%n");
     }
 
     @Override

@@ -32,7 +32,7 @@ public class PageViewCart extends Page {
 
                 System.out.println(cartIDs.size() + ": " + productName + ": " + amount + " Price For Each: " + price + ",-");
             }
-            System.out.println("Would you like to remove anything from your cart?");
+            System.out.printf("%nWould you like to remove anything from your cart?%n");
             System.out.println("1: Yes");
             System.out.println("2: No");
             System.out.println("3: Go to checkout");

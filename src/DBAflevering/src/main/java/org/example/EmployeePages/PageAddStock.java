@@ -11,7 +11,7 @@ public class PageAddStock extends Page {
 
     @Override
     protected void display() throws SQLException {
-        System.out.println("0: Back");
+        System.out.printf("%n0: Back%n");
         for (int i = 0; i < Main.productList.size(); i++) {
             System.out.println(i + 1 + ": " + Main.productList.get(i).type() + ": " + Main.productList.get(i).itemName() + ": " + Main.productList.get(i).amount() + " in stock: " + Main.productList.get(i).price() + ",-");
         }

@@ -1,25 +1,30 @@
-package org.example.EmployeePages;
+package org.example;
 
 import org.example.CustomerPages.PageMainMenuCustomer;
-import org.example.LoadData;
-import org.example.Main;
-import org.example.Page;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
 public class PageAddNewCustomer extends Page {
+
+    boolean back = false;
     @Override
     protected void display() throws SQLException {
         //Formatting for split
+        System.out.printf("0. Back%n");
         System.out.println("Please enter the relevant customer information in the following format: ");
         System.out.println("FullName, Address, ZipCode, City, Balance");
     }
 
     @Override
     protected Page nextPage() {
-        return new PageMainMenuCustomer().init(connection);
+        if (back) {
+            return new PageLogin().init(connection);
+        } else {
+            return new PageMainMenuCustomer().init(connection);
+        }
+
     }
 
     @Override
@@ -31,7 +36,11 @@ public class PageAddNewCustomer extends Page {
             int tester = Integer.parseInt(columns[2]);
             tester = Integer.parseInt(columns[4]);
         }catch (Exception e){
-            System.out.println("Formating error");
+            if (Integer.parseInt(columns[0]) == 0){
+                back = true;
+            } else {
+                System.out.println("Formating error");
+            }
             correctFormat = false;
         }
         //Adds customer to database

@@ -10,13 +10,13 @@ import java.sql.Statement;
 public class PageProfile extends Page {
     @Override
     protected void display() throws SQLException {
-        System.out.println("Name: " + Main.currentCustomer.fullName());
+        System.out.printf("%nName: " + Main.currentCustomer.fullName() + "%n");
         System.out.println("Address: " + Main.currentCustomer.address());
         System.out.println("Zip: " + Main.currentCustomer.zipCode());
         System.out.println("City: " + Main.currentCustomer.city());
         System.out.println("Balance: " + Main.currentCustomer.balance());
 
-        System.out.println("What would you like to do?");
+        System.out.printf("%nWhat would you like to do?%n");
         System.out.println("1. Sign out");
         System.out.println("2. Update Balance");
         System.out.println("3. Back to main menu");

@@ -9,12 +9,12 @@ import java.sql.SQLException;
 public class PageBrowseProducts extends Page {
     @Override
     protected void display() throws SQLException {
-        System.out.println("0: Back");
+        System.out.printf("%n0: Back%n");
         for (int i = 0; i < Main.productList.size(); i++) {
             System.out.println(i + 1 + ": " + Main.productList.get(i).type() + ": " + Main.productList.get(i).itemName() + ": " + Main.productList.get(i).amount() + " in stock: " + Main.productList.get(i).price() + ",-");
         }
 
-        System.out.println("What product would you like to buy? ");
+        System.out.printf("%nWhat product would you like to buy?%n");
     }
 
     @Override

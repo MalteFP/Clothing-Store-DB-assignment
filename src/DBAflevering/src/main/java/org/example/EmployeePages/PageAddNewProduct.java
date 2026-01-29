@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class PageAddNewProduct extends Page {
     @Override
     protected void display() throws SQLException {
+        System.out.println("0. Back");
         //Formatting for split
         System.out.println("Please enter the product description in the following format: ");
         System.out.println("Type, Name, Stock, Price");
@@ -30,7 +31,9 @@ public class PageAddNewProduct extends Page {
             int tester = Integer.parseInt(columns[3]);
             tester = Integer.parseInt(columns[2]);
         }catch (Exception e){
+            if(Integer.parseInt(columns[0]) != 0){
             System.out.println("Formating error");
+            }
             correctFormat = false;
         }
         //Adds item to stock
