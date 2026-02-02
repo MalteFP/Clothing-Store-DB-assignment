@@ -22,7 +22,7 @@ public class LoadData {
         ResultSet products = getProducts.executeQuery("SELECT * FROM products");
 
         while (products.next()) {
-            productList.add(new Product(products.getInt("ID"),products.getString("Type"),products.getString("ItemName"), products.getInt("Amount"), products.getInt("Price")));
+            productList.add(new Product(products.getInt("ID"), products.getString("Type"), products.getString("ItemName"), products.getInt("Amount"), products.getInt("Price")));
         }
         return productList;
     }
@@ -34,7 +34,7 @@ public class LoadData {
         ResultSet customers = getCustomers.executeQuery("SELECT * FROM Customers");
 
         while (customers.next()) {
-            customerList.add(new Customer(customers.getInt("ID"),customers.getString("FullName"),customers.getString("Address"), customers.getInt("ZipCode"), customers.getString("City"),  customers.getInt("Balance")));
+            customerList.add(new Customer(customers.getInt("ID"), customers.getString("FullName"), customers.getString("Address"), customers.getInt("ZipCode"), customers.getString("City"), customers.getInt("Balance")));
         }
         return customerList;
     }
@@ -46,7 +46,7 @@ public class LoadData {
         ResultSet stores = getStores.executeQuery("SELECT * FROM Stores");
 
         while (stores.next()) {
-            loadStores.add(new Store(stores.getInt("ID"),stores.getString("Address"),stores.getInt("ZipCode"), stores.getString("City")));
+            loadStores.add(new Store(stores.getInt("ID"), stores.getString("Address"), stores.getInt("ZipCode"), stores.getString("City")));
         }
         return loadStores;
     }

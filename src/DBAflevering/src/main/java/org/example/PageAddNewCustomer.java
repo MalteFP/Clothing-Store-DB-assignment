@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class PageAddNewCustomer extends Page {
 
     boolean back = false;
+
     @Override
     protected void display() throws SQLException {
         //Formatting for split
@@ -35,16 +36,20 @@ public class PageAddNewCustomer extends Page {
         try {
             int tester = Integer.parseInt(columns[2]);
             tester = Integer.parseInt(columns[4]);
-        }catch (Exception e){
-            if (Integer.parseInt(columns[0]) == 0){
-                back = true;
-            } else {
-                System.out.println("Formating error");
+        } catch (Exception e) {
+            try {
+                if (Integer.parseInt(columns[0]) == 0) {
+                    back = true;
+                }
+
+            } catch (Exception _) {
+                System.out.println("Formatting error");
+                correctFormat = false;
             }
             correctFormat = false;
         }
         //Adds customer to database
-        if(correctFormat){
+        if (correctFormat) {
             Statement addCustomer = connection.createStatement();
             addCustomer.executeUpdate("INSERT INTO Customers (FullName, Address, ZipCode, City, Balance) VALUES ('" + columns[0] + "', '" + columns[1] + "', '" + columns[2] + "', '" + columns[3] + "', " + columns[4] + ")");
             Main.customerList = LoadData.loadCustomers();

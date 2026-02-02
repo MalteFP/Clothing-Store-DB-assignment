@@ -21,10 +21,8 @@ public class Main {
         storeList = LoadData.loadStores();
 
 
-
         Page page = new PageLogin();
         page.init(connection);
-
         while (page != null) {
             page = page.run();
         }

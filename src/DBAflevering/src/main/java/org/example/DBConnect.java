@@ -1,10 +1,12 @@
 package org.example;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnect {
     private Connection connection;
+
     public DBConnect() {
         String url = "jdbc:sqlite:Database.db";
         try {
@@ -20,7 +22,7 @@ public class DBConnect {
     }
 
     public void closeLocalConnection() {
-        if(connection != null) {
+        if (connection != null) {
             try {
                 connection.close();
             } catch (SQLException e) {

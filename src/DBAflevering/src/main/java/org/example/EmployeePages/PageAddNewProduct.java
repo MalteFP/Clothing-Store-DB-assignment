@@ -30,17 +30,19 @@ public class PageAddNewProduct extends Page {
         try {
             int tester = Integer.parseInt(columns[3]);
             tester = Integer.parseInt(columns[2]);
-        }catch (Exception e){
-            if(Integer.parseInt(columns[0]) != 0){
-            System.out.println("Formating error");
+        }catch (Exception e) {
+            try {
+                Integer.parseInt(columns[0]);
+            } catch (Exception _) {
+                System.out.println("Formatting error");
+                correctFormat = false;
             }
-            correctFormat = false;
-        }
-        //Adds item to stock
-        if(correctFormat){
-            Statement addItem = connection.createStatement();
-            addItem.executeUpdate("INSERT INTO Products (Type, ItemName, Amount, Price) VALUES ('" + columns[0] + "', '" + columns[1] + "', " + columns[2] + ", " + columns[3] + ")");
-            Main.productList = LoadData.loadProducts();
+            //Adds item to stock
+            if (correctFormat) {
+                Statement addItem = connection.createStatement();
+                addItem.executeUpdate("INSERT INTO Products (Type, ItemName, Amount, Price) VALUES ('" + columns[0] + "', '" + columns[1] + "', " + columns[2] + ", " + columns[3] + ")");
+                Main.productList = LoadData.loadProducts();
+            }
         }
     }
 

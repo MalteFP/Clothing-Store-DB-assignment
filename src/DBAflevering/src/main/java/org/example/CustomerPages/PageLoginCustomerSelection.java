@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class PageLoginCustomerSelection extends Page {
 
     private int decision;
+
     @Override
     protected void display() throws SQLException {
 
@@ -24,8 +25,9 @@ public class PageLoginCustomerSelection extends Page {
 
     @Override
     protected Page nextPage() {
-        switch (decision)   {
-            case 0: return new PageLogin().init(connection);
+        switch (decision) {
+            case 0:
+                return new PageLogin().init(connection);
         }
         return new PageMainMenuCustomer().init(connection);
     }
@@ -40,6 +42,6 @@ public class PageLoginCustomerSelection extends Page {
 
 
     private int decision() {
-        return Utils.reader(0,Main.customerList.size());
+        return Utils.reader(0, Main.customerList.size());
     }
 }

@@ -45,6 +45,6 @@ public class PageQtyToBuy extends Page {
 
 
     private int decision() {
-        return Utils.reader(1,Main.productList.get(productToBuy).amount());
+        return Utils.reader(0,Main.productList.get(productToBuy).amount());
     }
 }

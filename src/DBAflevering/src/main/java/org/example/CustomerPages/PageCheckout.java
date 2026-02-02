@@ -1,5 +1,6 @@
 package org.example.CustomerPages;
 
+import org.example.LoadData;
 import org.example.Main;
 import org.example.Page;
 import org.example.Utils;
@@ -49,8 +50,8 @@ public class PageCheckout extends Page {
                     //Take Money
                     Statement takeMoney = connection.createStatement();
                     takeMoney.executeUpdate("UPDATE Customers SET Balance = Balance - " + total + " WHERE ID =" + Main.currentCustomer.ID());
-
-                    Main.currentCustomer.setBalance(Main.currentCustomer.balance() + total);
+                    Main.customerList = LoadData.loadCustomers();
+                    Main.currentCustomer.setBalance(Main.currentCustomer.balance() - total);
 
                 } else {
                     System.out.printf("%nYou don't have enough balance to checkout");
