@@ -14,7 +14,7 @@ public class PageLoginCustomerSelection extends Page {
 
     @Override
     protected void display() throws SQLException {
-
+        System.out.printf("%nPlease select your profile%n");
         System.out.printf("%n0. Back%n");
         for (int i = 0; i < Main.customerList.size(); i++) {
             System.out.println(i + 1 + ": " + Main.customerList.get(i).fullName());

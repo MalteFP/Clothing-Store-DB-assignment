@@ -20,8 +20,8 @@ public class PageMainMenuCustomer extends Page {
     protected Page nextPage() {
         switch (decision()) {
             case 1: return new PageBrowseProducts().init(connection);
-            case 2: return  new PageViewCart().init(connection);
-            case 3: return  new PageProfile().init(connection);
+            case 2: return new PageViewCart().init(connection);
+            case 3: return new PageProfile().init(connection);
         }
         return null;
     }

@@ -32,7 +32,7 @@ public class PageAddNewCustomer extends Page {
     protected void act() throws SQLException {
         //Split for database
         boolean correctFormat = true;
-        String[] columns = decision().split(", "); //ChatGPT told us about split
+        String[] columns = decision().split(", ");
         try {
             int tester = Integer.parseInt(columns[2]);
             tester = Integer.parseInt(columns[4]);
