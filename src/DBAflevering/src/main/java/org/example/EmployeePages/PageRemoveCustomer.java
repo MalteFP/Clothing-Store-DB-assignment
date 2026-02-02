@@ -17,7 +17,7 @@ public class PageRemoveCustomer extends Page {
 
 
 
-        System.out.printf("%n0. Back%n");
+        System.out.printf("%n0: Back%n");
         for (int i = 0; i < Main.customerList.size(); i++) {
             System.out.println(i + 1 + ": " + Main.customerList.get(i).fullName());
         }

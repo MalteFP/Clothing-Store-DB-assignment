@@ -26,7 +26,7 @@ public class PageRemoveFromCart extends Page {
         ResultSet cart = getCart.executeQuery("SELECT Carts.ID, Carts.Amount, Products.ItemName, Products.Price FROM Carts LEFT JOIN Products ON Carts.ProductID = Products.ID WHERE Carts.CustomerID =" +Main.currentCustomer.ID()
         );
 
-        System.out.printf("%n0. Back%n");
+        System.out.printf("%n0: Back%n");
         while (cart.next()) {
             amountOfItemsInCart++;
             cartIDs.add(cart.getInt("ID"));

@@ -25,8 +25,8 @@ public class PageCheckout extends Page {
         }
 
         System.out.println("Do you want to checkout, your total is " + total+",-");
-        System.out.println("1. Yes");
-        System.out.println("2. No");
+        System.out.println("1: Yes");
+        System.out.println("2: No");
     }
 
     @Override

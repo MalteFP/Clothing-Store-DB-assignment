@@ -9,11 +9,11 @@ public class PageMainMenuEmployee extends Page {
     protected void display() throws SQLException {
         //Employee action options
         System.out.println("Welcome to the main menu employee page");
-        System.out.println("1. Add new product to shelf");
-        System.out.println("2. Remove a product from shelf");
-        System.out.println("3. Add to stock of existing item");
-        System.out.println("4. Remove a customer");
-        System.out.println("5. Log Out");
+        System.out.println("1: Add new product to shelf");
+        System.out.println("2: Remove a product from shelf");
+        System.out.println("3: Add to stock of existing item");
+        System.out.println("4: Remove a customer");
+        System.out.println("5: Log Out");
         System.out.printf("%nWhat would you like to do?%n");
     }
 

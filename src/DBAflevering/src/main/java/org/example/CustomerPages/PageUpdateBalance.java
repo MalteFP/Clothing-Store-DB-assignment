@@ -14,7 +14,7 @@ public class PageUpdateBalance extends Page {
     protected void display() throws SQLException {
 
         System.out.println("Balance: " + Main.currentCustomer.balance());
-        System.out.println("Do you want to add/withdraw from your balance?");
+        System.out.println("How much do you want to add/withdraw from your balance?");
 
     }
 

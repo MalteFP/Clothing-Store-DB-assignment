@@ -17,9 +17,9 @@ public class PageProfile extends Page {
         System.out.println("Balance: " + Main.currentCustomer.balance());
 
         System.out.printf("%nWhat would you like to do?%n");
-        System.out.println("1. Sign out");
-        System.out.println("2. Update Balance");
-        System.out.println("3. Back to main menu");
+        System.out.println("1: Sign out");
+        System.out.println("2: Update Balance");
+        System.out.println("3: Back to main menu");
     }
 
     @Override
